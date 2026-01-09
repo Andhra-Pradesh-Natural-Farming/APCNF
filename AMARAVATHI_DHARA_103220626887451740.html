@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Andhra Pradesh Community Natural Farming</title>
+  <style>
+    :root{
+      --bg:#F4F7F5;
+      --card:#FFFFFF;
+      --text:#0F172A;
+      --muted:#475569;
+      --border:#E2E8F0;
+      --green:#2E7D32;
+      --green2:#66BB6A;
+      --amber:#F9A825;
+      --amberBg:#FFF7E0;
+      --chipBg:#E8F5E9;
+      --shadow: 0 10px 25px rgba(2, 6, 23, 0.08);
+      --radius: 18px;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+    }
+    .wrap{
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 18px 14px 30px;
+    }
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding: 8px 6px 14px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .logo{
+      width:34px; height:34px;
+      border-radius:10px;
+      background: linear-gradient(135deg, var(--green), var(--green2));
+      box-shadow: 0 6px 14px rgba(46,125,50,0.25);
+    }
+    .brand h1{
+      font-size: 16px;
+      margin:0;
+      line-height:1.1;
+    }
+    .brand p{
+      margin:0;
+      font-size:12px;
+      color: var(--muted);
+    }
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      margin-bottom: 14px;
+    }
+    .hero{
+      padding: 16px 16px 12px;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(102,187,106,0.25), transparent 60%),
+        radial-gradient(900px 500px at 110% 10%, rgba(46,125,50,0.18), transparent 55%),
+        var(--card);
+    }
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-bottom: 12px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: var(--chipBg);
+      border: 1px solid rgba(46,125,50,0.15);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      user-select:none;
+    }
+    .chip .dot{
+      width: 10px; height:10px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 3px rgba(46,125,50,0.12);
+    }
+    .titleRow{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      margin-top: 2px;
+    }
+    .title{
+      margin:0;
+      font-size: 18px;
+      line-height: 1.25;
+    }
+    .subtitle{
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    .kv{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .kv .item{
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 10px 10px;
+      background: #FBFCFD;
+    }
+    .kv .k{
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .kv .v{
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+    }
+    .section{
+      padding: 14px 16px;
+      border-top: 1px solid var(--border);
+    }
+    .section:first-child{ border-top:none; }
+    .section h2{
+      margin: 0 0 10px;
+      font-size: 14px;
+      letter-spacing: 0.2px;
+    }
+    .muted{ color: var(--muted); }
+    .origin{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .row{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: #FBFCFD;
+    }
+    .row .left{
+      display:flex;
+      flex-direction:column;
+      gap: 3px;
+      min-width: 0;
+    }
+    .row .label{
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .row .value{
+      font-size: 14px;
+      font-weight: 700;
+      overflow: visible;
+      text-overflow: initial;
+      white-space: normal;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+
+    details{
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 10px 12px;
+      background: #FBFCFD;
+      margin-bottom: 10px;
+    }
+    summary{
+      cursor:pointer;
+      font-weight: 700;
+      font-size: 13px;
+      list-style:none;
+      outline:none;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    .pill{
+      display:inline-block;
+      font-size: 11px;
+      margin-left: 8px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(46,125,50,0.10);
+      color: var(--green);
+      font-weight: 700;
+      border: 1px solid rgba(46,125,50,0.15);
+    }
+    .practice-items{
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+      display:flex;
+      flex-direction:column;
+      gap: 8px;
+    }
+    .practice-items li{
+      display:flex;
+      align-items:flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.35;
+      padding-top: 2px;
+    }
+    .check{
+      width:18px; height:18px;
+      border-radius: 6px;
+      background: rgba(46,125,50,0.12);
+      border: 1px solid rgba(46,125,50,0.20);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color: var(--green);
+      font-weight: 900;
+      flex: 0 0 18px;
+      margin-top: 1px;
+    }
+    .program{
+      display:flex;
+      align-items:flex-start;
+      gap: 12px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      background: #FBFCFD;
+    }
+    .badge{
+      width: 34px; height: 34px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(46,125,50,0.16), rgba(102,187,106,0.22));
+      border: 1px solid rgba(46,125,50,0.15);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:900;
+      color: var(--green);
+      flex: 0 0 34px;
+    }
+    .actions{
+      display:flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .btn{
+      flex: 1;
+      border-radius: 14px;
+      padding: 12px 12px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      cursor:pointer;
+      font-weight: 800;
+      font-size: 13px;
+      box-shadow: 0 8px 18px rgba(2, 6, 23, 0.04);
+    }
+    .btn.primary{
+      background: linear-gradient(135deg, var(--green), var(--green2));
+      color: white;
+      border: none;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 380px){
+      .kv{ grid-template-columns: 1fr; }
+      .actions{ flex-direction: column; }
+      .btn{ width: 100%; }
+    }
+  
+    /* Practice photos / links */
+    .p-photos{ display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+    .p-photos img{
+      width:72px; height:72px; object-fit:cover;
+      border-radius:12px; border:1px solid var(--border);
+      box-shadow: 0 6px 14px rgba(2, 6, 23, 0.06);
+    }
+    .p-link{
+      display:inline-flex;
+      margin-top:8px;
+      font-size:12px;
+      font-weight:700;
+      color: var(--green);
+      text-decoration: none;
+    }
+    .p-link:hover{ text-decoration: underline; }
+
+  
+    /* Farmer profile photo */
+    .farmer-head{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .avatar{
+      width:44px; height:44px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      object-fit:cover;
+      background:#FBFCFD;
+      flex: 0 0 44px;
+    }
+    .avatar.fallback{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:900;
+      color: var(--green);
+      background: rgba(46,125,50,0.10);
+      border: 1px solid rgba(46,125,50,0.15);
+    }
+    .map-link{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-top:10px;
+      padding:10px 12px;
+      border-radius:14px;
+      border: 1px solid var(--border);
+      background:#FBFCFD;
+      font-size:13px;
+      font-weight:800;
+      text-decoration:none;
+      color: var(--text);
+    }
+    .map-link:hover{ text-decoration: underline; }
+    .map-pill{
+      font-size:11px;
+      padding:3px 8px;
+      border-radius:999px;
+      background: rgba(46,125,50,0.10);
+      color: var(--green);
+      font-weight:800;
+      border: 1px solid rgba(46,125,50,0.15);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <h1>Andhra Pradesh Community Natural Farming</h1>
+          <p>Claim Card</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- FARMER FIRST -->
+    <section class="card" id="farmer">
+      <div class="section">
+        <h2>Farmer Details</h2>
+        <div class="origin">
+          <div class="row">
+            <div class="left">
+              <div class="label">Farmer</div>
+              <div class="farmer-head"><img id="farmerPhoto" class="avatar" alt="Farmer profile photo"><div class="value" id="farmerName">--</div></div>
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="left">
+              <div class="label">Location</div>
+              <div class="value" id="location">--</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="left">
+              <div class="label">Administrative Codes</div>
+              <div class="value" id="adminCodes">--</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CROP AFTER -->
+    <section class="card hero" id="cropSection">
+      <div class="chips" id="chipRow"></div>
+
+      <div class="titleRow">
+        <div>
+          <h2 class="title" id="headline"></h2>
+          <p class="subtitle" id="subhead">Crop and season details for this farming instance.</p>
+        </div>
+      </div>
+
+      <div class="kv">
+        <div class="item">
+          <div class="k">Crop</div>
+          <div class="v" id="crop">--</div>
+        </div>
+        <div class="item">
+          <div class="k">Season / Year</div>
+          <div class="v" id="season">--</div>
+        </div>
+        <div class="item">
+          <div class="k">Area Cultivated</div>
+          <div class="v" id="acreage">--</div>
+        </div>
+        <div class="item">
+          <div class="k">Sowing Date</div>
+          <div class="v" id="sowing">--</div>
+        </div>
+      </div>
+      <div id="mapLinkWrap"></div>
+
+      <div class="actions">
+        <button class="btn primary" onclick="document.getElementById('farmer').scrollIntoView({behavior:'smooth'})">Farmer Details</button>
+        <button class="btn" onclick="document.getElementById('practices').scrollIntoView({behavior:'smooth'})">Practices</button>
+      </div>
+    </section>
+
+    <!-- PRACTICES (UNCHANGED) -->
+    <section class="card" id="practices">
+      <div class="section">
+        <h2>Natural Farming Practices</h2>
+        <details open>
+          <summary>Claim Summary <span class="pill" id="claimCount"></span></summary>
+          <ul class="practice-items" id="claimList"></ul>
+        </details>
+        <details>
+          <summary>Practices Applied <span class="pill" id="practiceCount"></span></summary>
+          <ul class="practice-items" id="practiceList"></ul>
+        </details>
+      </div>
+    </section>
+
+    <div style="padding: 10px; text-align:center; color:#999; font-size:11px;">
+      Display is generated from programme-recorded data for the crop instance.
+    </div>
+  </div>
+
+  <script>
+    // ============================================
+    //  EDIT THIS DATA BELOW TO UPDATE THE CARD
+    // ============================================
+    const claimData = {
+  "farmer": {
+    "id": "103220626887451740",
+    "name": "AMARAVATHI DHARA",
+    "photo_url": "https://ryss.ap.gov.in/gateway/urvi-app-service/api/v1/consent/attachment/bridge/ie/iconpic?ieId=103220626887451740"
+  },
+  "geography": {
+    "district": {
+      "name": "TIRUPATI"
+    },
+    "mandal": {
+      "name": "CHANDRAGIRI"
+    },
+    "panchayat": {
+      "name": ""
+    },
+    "village": {
+      "name": ""
+    }
+  },
+  "cropYear": {
+    "season_year": "",
+    "crop": "PADDY",
+    "acreage_acres": 0.35,
+    "sowing_date": "",
+    "chemical_free_100": false,
+    "latitude": 13.609262466430664,
+    "longitude": 79.2184066772461
+  },
+  "claims": [
+    "Natural Farming Practiced"
+  ],
+  "practices": [
+    {
+      "category": "Cropping System",
+      "practice": "Border Crops",
+      "photo": "https://ryss.ap.gov.in/gateway/portfolio-service/api/v1/jcr/attachment?path=/portfolio_line_item/1767434402874-1767434392451.jpg"
+    }
+  ]
+};
+
+    // ============================================
+    //  RENDER LOGIC (DO NOT EDIT BELOW THIS LINE)
+    // ============================================
+    function init(){
+      const chips = [];
+      if (claimData.claims.some(c => c.toLowerCase().includes("natural farming"))) chips.push("Natural Farming");
+      if (claimData.cropYear.chemical_free_100) chips.push("100% Chemical-Free");
+      
+      document.getElementById("chipRow").innerHTML = chips.map(t => `
+        <span class="chip"><span class="dot"></span>${t}</span>
+      `).join("");
+
+      document.getElementById("headline").textContent = "";
+
+      document.getElementById("crop").textContent = claimData.cropYear.crop;
+      document.getElementById("season").textContent = claimData.cropYear.season_year;
+      document.getElementById("acreage").textContent = `${claimData.cropYear.acreage_acres} acres`;
+      document.getElementById("sowing").textContent = claimData.cropYear.sowing_date;
+
+      document.getElementById("farmerName").textContent = claimData.farmer.name;
+      
+      
+      // Farmer profile photo (optional)
+      const photoEl = document.getElementById("farmerPhoto");
+      const photoUrl = (claimData.farmer && claimData.farmer.photo_url) ? claimData.farmer.photo_url : "";
+      if (photoUrl){
+        photoEl.src = photoUrl;
+        photoEl.style.display = "block";
+        photoEl.classList.remove("fallback");
+      } else {
+        // fallback initials
+        const n = (claimData.farmer && claimData.farmer.name) ? claimData.farmer.name.trim() : "Farmer";
+        const initials = n.split(/\s+/).slice(0,2).map(x=>x[0]?.toUpperCase()||"").join("") || "F";
+        photoEl.removeAttribute("src");
+        photoEl.classList.add("fallback");
+        photoEl.style.display = "flex";
+        photoEl.alt = "Farmer";
+        photoEl.outerHTML = `<div id="farmerPhoto" class="avatar fallback" aria-label="Farmer">${initials}</div>`;
+      }
+
+      // Map link in crop section (optional)
+      const lat = claimData.cropYear && (claimData.cropYear.latitude ?? claimData.cropYear.lat);
+      const lon = claimData.cropYear && (claimData.cropYear.longitude ?? claimData.cropYear.lon ?? claimData.cropYear.lng);
+      const mapWrap = document.getElementById("mapLinkWrap");
+      if (mapWrap){
+        if (typeof lat === "number" && typeof lon === "number" && isFinite(lat) && isFinite(lon)){
+          const href = `https://www.google.com/maps?q=${lat},${lon}`;
+          mapWrap.innerHTML = `<a class="map-link" href="${href}" target="_blank" rel="noopener">
+            <span class="map-pill">Map</span>
+            <span>View Farm on Map</span>
+          </a>`;
+        } else {
+          mapWrap.innerHTML = "";
+        }
+      }
+const g = claimData.geography;
+      document.getElementById("location").textContent = `${g.village.name}, ${g.mandal.name}, ${g.district.name}`;
+      document.getElementById("adminCodes").textContent = `District ${g.district.name} • Mandal ${g.mandal.name} • Panchayat ${g.panchayat.name} • Village ${g.village.name}`;
+
+      document.getElementById("claimList").innerHTML = claimData.claims.map(c => `
+        <li><span class="check">✓</span><span>${c}</span></li>
+      `).join("");
+      document.getElementById("claimCount").textContent = `${claimData.claims.length} claims`;
+
+      
+      document.getElementById("practiceList").innerHTML = claimData.practices.map(p => {
+        const imgs = []
+          .concat(p.photo ? [p.photo] : [])
+          .concat(Array.isArray(p.photos) ? p.photos : []);
+        const photoHtml = imgs.length
+          ? `<div class="p-photos">${imgs.map(src => `<a href="${src}" target="_blank" rel="noopener"><img src="${src}" alt="Practice photo"></a>`).join("")}</div>`
+          : "";
+        const urlHtml = (!imgs.length && p.url)
+          ? `<a class="p-link" href="${p.url}" target="_blank" rel="noopener">Open reference</a>`
+          : "";
+        return `
+          <li><span class="check">✓</span>
+            <span>
+              <strong>${p.practice}</strong><span class="muted"> — ${p.category}</span>
+              ${photoHtml}${urlHtml}
+            </span>
+          </li>
+        `;
+      }).join("");
+document.getElementById("practiceCount").textContent = `${claimData.practices.length} practices`;
+    }
+    init();
+  </script>
+</body>
+</html>
